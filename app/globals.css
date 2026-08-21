@@ -174,6 +174,44 @@ body {
   background: #fff7e2;
 }
 
+/* Street walker stop state: pause the walk, jump + wave the arm */
+.sv-street.is-stop .walker * {
+  animation-play-state: paused;
+}
+.sv-street.is-stop .walker .jump {
+  animation-play-state: running;
+}
+.sv-street.is-stop .walker .arm .shoulder {
+  animation: sv-wave 0.7s ease-in-out infinite;
+  animation-play-state: running;
+}
+
+/* Speech bubble above the walker */
+.hi-bubble {
+  position: absolute;
+  z-index: 5;
+  background: var(--amber);
+  color: var(--foreground);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 6px 10px;
+  border: 1px solid var(--foreground);
+  pointer-events: none;
+}
+.hi-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  border-right: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  transform: rotate(45deg);
+}
+
 /* Hatched divider, like pencil hatch marks on a blueprint */
 .hatch-line {
   height: 10px;

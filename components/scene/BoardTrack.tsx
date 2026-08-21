@@ -13,9 +13,9 @@ const KIT = [
 ];
 
 const SPEED = 130; // viewBox units/s
-const PERIOD = 9100; // matches <use> clone offset
+const PERIOD = 9100; // matches the duplicated copy offset
 
-function ReadLine() {
+function ReadLine({ stopped }: { stopped: boolean }) {
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setIndex((i) => (i + 1) % KIT.length), 3500);
@@ -25,28 +25,41 @@ function ReadLine() {
 
   return (
     <div className="mb-2 flex items-baseline justify-center gap-3">
-      <span className="font-mono text-[10.5px] tracking-[0.16em] text-accent">
-        {item.index}
-      </span>
       <AnimatePresence mode="popLayout">
         <motion.span
-          key={item.name}
+          key={stopped ? "hi" : item.name}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.4 }}
-          className="text-[17px] font-medium text-foreground"
+          className="flex items-baseline gap-3"
         >
-          {item.name}
+          {stopped ? (
+            <span className="text-[17px] font-medium text-accent">
+              beep boop. hello, human.
+            </span>
+          ) : (
+            <>
+              <span className="font-mono text-[10.5px] tracking-[0.16em] text-accent">
+                {item.index}
+              </span>
+              <span className="text-[17px] font-medium text-foreground">
+                {item.name}
+              </span>
+              <span className="text-[15px] text-muted">{item.note}</span>
+            </>
+          )}
         </motion.span>
       </AnimatePresence>
-      <span className="text-[15px] text-muted">{item.note}</span>
     </div>
   );
 }
 
 export default function BoardTrack() {
   const viewRef = useRef<HTMLDivElement>(null);
+  const stoppedRef = useRef(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [stopped, setStopped] = useState(false);
 
   useEffect(() => {
     const svg = viewRef.current?.querySelector("svg");
@@ -62,22 +75,49 @@ export default function BoardTrack() {
     const tick = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
-      offset = (offset + SPEED * dt) % PERIOD;
-      layers.forEach((el) => {
-        el.style.transform = `translateX(${-offset}px)`;
-      });
+      if (!stoppedRef.current) {
+        offset = (offset + SPEED * dt) % PERIOD;
+        layers.forEach((el) => {
+          el.style.transform = `translateX(${-offset}px)`;
+        });
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  const toggle = () => {
+    const next = !stoppedRef.current;
+    stoppedRef.current = next;
+    setStopped(next);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    if (next) {
+      resumeTimer.current = setTimeout(() => {
+        stoppedRef.current = false;
+        setStopped(false);
+      }, 3200);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
+  }, []);
+
   return (
-    <div className="sv-board-walk w-full overflow-hidden">
-      <ReadLine />
+    <div
+      className={`sv-board-walk w-full overflow-hidden ${
+        stopped ? "is-met" : ""
+      }`}
+    >
+      <ReadLine stopped={stopped} />
       <div
         ref={viewRef}
-        className="sv-board-view mx-auto w-full max-w-[1524px]"
+        className="sv-board-view mx-auto w-full max-w-[1524px] cursor-pointer"
+        data-cursor={stopped ? "walk on" : "say hi"}
+        onClick={toggle}
         dangerouslySetInnerHTML={{ __html: boardSvg }}
       />
     </div>

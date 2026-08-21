@@ -4,10 +4,11 @@ const columns = [
   {
     heading: "sitemap",
     items: [
-      { label: "Welcome", href: "#top" },
-      { label: "Work", href: "#work" },
-      { label: "Story", href: "#story" },
-      { label: "Contact", href: "#contact" },
+      { label: "Welcome", href: "/" },
+      { label: "Work", href: "/work" },
+      { label: "Story", href: "/story" },
+      { label: "Fun", href: "/fun" },
+      { label: "Contact", href: "/#contact" },
     ],
   },
   {
