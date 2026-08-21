@@ -37,8 +37,8 @@ export default function Manifesto() {
       className="sec-frame band-plain px-5 py-32 sm:px-10 sm:py-44"
       data-badge="01 · code with a purpose"
     >
-      <div ref={ref}>
-        <p className="max-w-5xl font-sans text-3xl font-medium leading-snug sm:text-5xl sm:leading-tight">
+      <div ref={ref} className="mx-auto w-full max-w-4xl">
+        <p className="font-sans text-3xl font-medium leading-snug sm:text-5xl sm:leading-tight">
           {words.map((word, i) => {
             const start = i / words.length;
             const end = (i + 1) / words.length;

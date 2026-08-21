@@ -5,6 +5,8 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Manifesto from "@/components/Manifesto";
+import Tracks from "@/components/Tracks";
+import AiStack from "@/components/AiStack";
 import Stats from "@/components/Stats";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
@@ -29,6 +31,7 @@ export default function Home() {
           className="band-plain font-mono text-sm uppercase tracking-widest text-muted"
         />
         <Manifesto />
+        <Tracks />
         <Stats />
         <Timeline />
         <Marquee
@@ -37,6 +40,7 @@ export default function Home() {
           className="band-plain font-sans text-2xl font-bold uppercase"
         />
         <Projects />
+        <AiStack />
         <Contact />
         <BoardTrack />
       </main>

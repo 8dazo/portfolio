@@ -103,7 +103,7 @@ export default function Projects() {
         </motion.h2>
       </div>
 
-      <div className="mt-16 flex flex-col gap-6 px-5 sm:px-10">
+      <div className="mx-auto mt-16 flex w-full max-w-5xl flex-col gap-6 px-5 sm:px-10">
         {projects.map((project, i) => (
           <ProjectCard key={project.name} project={project} index={i} />
         ))}

@@ -34,10 +34,10 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 export default function Stats() {
   return (
     <section
-      className="sec-frame px-5 pb-24 pt-16 sm:px-10"
-      data-badge="numbers"
+      className="sec-frame band-plain px-5 pb-24 pt-16 sm:px-10"
+      data-badge="by the numbers"
     >
-      <div className="sheet-panel grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="sheet-panel mx-auto grid w-full max-w-5xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat, i) => (
         <motion.div
           key={stat.label}

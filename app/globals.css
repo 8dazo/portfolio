@@ -174,15 +174,31 @@ body {
   background: #fff7e2;
 }
 
-/* Street walker stop state: pause the walk, jump + wave the arm */
+/* Street walker stop state: pause the walk, turn to face the viewer, wave */
+.sv-street .walker .bob,
+.sv-street .walker .pose-front {
+  transition: opacity 0.22s ease;
+}
+.sv-street .walker .pose-front {
+  opacity: 0;
+  pointer-events: none;
+}
 .sv-street.is-stop .walker * {
   animation-play-state: paused;
 }
 .sv-street.is-stop .walker .jump {
   animation-play-state: running;
 }
-.sv-street.is-stop .walker .arm .shoulder {
-  animation: sv-wave 0.7s ease-in-out infinite;
+.sv-street.is-stop .walker .bob {
+  opacity: 0;
+}
+.sv-street.is-stop .walker .pose-front {
+  opacity: 1;
+}
+.sv-street.is-stop .walker .pose-front .arm-wave {
+  transform-box: fill-box;
+  transform-origin: 40% 92%;
+  animation: sv-wave 0.8s ease-in-out infinite;
   animation-play-state: running;
 }
 

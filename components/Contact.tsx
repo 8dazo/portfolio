@@ -45,7 +45,7 @@ export default function Contact() {
     <section
       id="contact"
       data-badge="04 · make a move"
-      className="sec-frame relative flex flex-col items-center justify-center overflow-hidden px-5 py-32 text-center sm:px-10 sm:py-44"
+      className="sec-frame band-plain relative flex flex-col items-center justify-center overflow-hidden px-5 py-32 text-center sm:px-10 sm:py-44"
     >
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 opacity-[0.14]"
@@ -60,7 +60,7 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-8 font-sans text-[14vw] font-bold uppercase leading-[0.9] tracking-tight sm:text-[9vw]"
+        className="mx-auto mt-8 w-full max-w-3xl font-sans text-5xl font-bold uppercase leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl"
       >
         Let&apos;s build
         <br />

@@ -5,6 +5,34 @@ import { AnimatePresence, motion } from "motion/react";
 import { streetSvg } from "./street-svg";
 import { projects } from "@/lib/data";
 
+// Front-facing pose (own drawing, reuses the walker palette classes).
+// Hidden by default; cross-faded in when the walker stops to say hi.
+const FRONT_POSE = `<g class="pose-front">
+  <rect class="trews" x="-3.6" y="-15" width="4.4" height="14.2" rx="1.6"/>
+  <rect class="trews" x="3.2" y="-15" width="4.4" height="14.2" rx="1.6"/>
+  <ellipse class="shoe" cx="-1.4" cy="-0.4" rx="3.4" ry="1.7"/>
+  <ellipse class="shoe" cx="5.4" cy="-0.4" rx="3.4" ry="1.7"/>
+  <rect class="coat" x="-6.5" y="-33" width="17" height="19.6" rx="3.4"/>
+  <rect class="shirt" x="0.4" y="-32.2" width="3.2" height="17.6"/>
+  <rect class="coat-d" x="-6.5" y="-17.4" width="17" height="1.6"/>
+  <g class="arm-rest">
+    <rect class="coat-f" x="-10" y="-31.4" width="3.6" height="13.6" rx="1.8"/>
+    <circle class="hand" cx="-8.2" cy="-16.4" r="1.9"/>
+  </g>
+  <g class="arm-wave">
+    <rect class="coat-f" x="10.4" y="-43.6" width="3.6" height="13.8" rx="1.8"/>
+    <circle class="hand" cx="12.2" cy="-45.2" r="2.1"/>
+  </g>
+  <rect class="skin" x="0.4" y="-36.4" width="3.2" height="3.4"/>
+  <circle class="ear" cx="-3.9" cy="-40" r="1.4"/>
+  <circle class="ear" cx="7.9" cy="-40" r="1.4"/>
+  <circle class="skin" cx="2" cy="-40.2" r="5.9"/>
+  <path class="hair" d="M-3.9 -41.4a5.9 5.9 0 0 1 11.8 0l-0.4 1a6.1 6.1 0 0 0-11 0z"/>
+  <circle class="pupil" cx="-0.3" cy="-40" r="0.8"/>
+  <circle class="pupil" cx="4.3" cy="-40" r="0.8"/>
+  <path d="M0.3 -37.1q1.7 1.6 3.4 0" fill="none" stroke="#8a6b52" stroke-width="0.7" stroke-linecap="round"/>
+</g>`;
+
 // Parallax speeds in viewBox units/s; loop periods match the duplicated copies.
 const LAYERS = [
   { selector: ".far", speed: 40, period: 5700 },
@@ -69,6 +97,12 @@ export default function StreetTrack() {
   useEffect(() => {
     const svg = viewRef.current?.querySelector("svg");
     if (!svg) return;
+
+    const jump = svg.querySelector(".walker .jump");
+    if (jump && !jump.querySelector(".pose-front")) {
+      jump.insertAdjacentHTML("beforeend", FRONT_POSE);
+    }
+
     const layers = LAYERS.map((layer) => ({
       ...layer,
       el: svg.querySelector<SVGGElement>(`:scope > g${layer.selector}`),
