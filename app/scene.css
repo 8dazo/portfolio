@@ -1,0 +1,357 @@
+/* Scene styles extracted from pleurat.com (walking street + circuit board tracks) */
+:root{--sv-page:#FFFCF0;--sv-sheet:#FFFDF3;--sv-paper:#FBF7E6;--sv-paper-2:#F3EDD6;--sv-tile:#EFE9D2;--sv-ink:#16140E;--sv-ink-2:#57534A;--sv-ink-3:#8B8577;--sv-amber:#F3B44A;--sv-amber-2:#C77E0A;--sv-amber-lt:#F9CB80;--sv-line:rgba(22,20,14,.16);--sv-line-2:rgba(22,20,14,.08);--sv-mark:var(--sv-amber);--sv-mono:var(--font-geist-mono),ui-monospace,monospace;--sv-code:var(--font-geist-mono),ui-monospace,monospace;--sv-fs-micro:10.5px;--sv-fs-sm:15px;--sv-fs-body:17px;--sv-measure-full:min(1524px,92vw);--sv-ease:cubic-bezier(.2,.8,.2,1)}
+.sv-hero:has(.sv-street){padding-bottom:0}
+.sv-board-lead{display:flex;justify-content:center;margin-bottom:clamp(22px,3.4vh,38px)}
+.sv-board-read{display:flex;justify-content:center;align-items:baseline;gap:12px;margin-bottom:10px;min-height:24px;width:100%;max-width:var(--sv-measure-full);margin-left:auto;margin-right:auto}
+.sv-board-read .ix{font-family:var(--sv-mono);font-size:var(--sv-fs-micro);letter-spacing:.16em;color:var(--sv-amber-2)}
+.sv-board-read .say{display:flex;align-items:baseline;gap:12px;animation:sv-street-say .5s var(--sv-ease) both}
+.sv-board-read .name{font-size:var(--sv-fs-body);font-weight:500;color:var(--sv-ink)}
+.sv-board-read .role{font-size:var(--sv-fs-sm);color:var(--sv-ink-3)}
+.sv-board-stage{display:flex;flex-direction:column;gap:6px;cursor:pointer}
+.sv-board-view{position:relative;overflow:hidden;width:100%;max-width:var(--sv-measure-full);margin:0 auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.sv-board-view svg{display:block;width:100%;height:100%}
+.sv-board-view{transition:none}
+.sv-board-view :is(path,rect,circle,ellipse,text){vector-effect:non-scaling-stroke}
+.sv-board-view :is(.world,.pads){will-change:transform}
+.sv-board-view .trace{fill:none;stroke:#b99a5e;stroke-width:2.2}
+.sv-board-view .sig{fill:none;stroke:#c7b48a;stroke-width:1.1;opacity:.7}
+.sv-board-view .pad{fill:none;stroke:#c7b48a;stroke-width:1.1}
+.sv-board-view .pad-hole{fill:#efe9da}
+.sv-board-view .pin{stroke:#9a9384;stroke-width:1.6;stroke-linecap:round;fill:none}
+.sv-board-view .via{fill:none;stroke:#b99a5e;stroke-width:1.4}
+.sv-board-view .chip-body{fill:#e5dfcd;stroke:#8a8272;stroke-width:1.1}
+.sv-board-view .die{fill:#d6cfb9;stroke:#8a8272;stroke-width:.7}
+.sv-board-view .chip-dot{fill:#8a8272}
+.sv-board-view .chip-label{font-family:var(--sv-code);font-size:13px;letter-spacing:.06em;fill:var(--sv-ink-2)}
+.sv-board-view .cap{fill:#cbd5dc;stroke:#8a8272;stroke-width:1}
+.sv-board-view .cap-band{stroke:#8a8272;stroke-width:1}
+.sv-board-view .res{fill:#e0cfc0;stroke:#8a8272;stroke-width:1}
+.sv-board-view .res-band{stroke:#a08a6f;stroke-width:1.4}
+.sv-board-view .led{fill:var(--sv-amber);stroke:#8a8272;stroke-width:.9}
+.sv-board-view .led-halo{fill:var(--sv-amber);opacity:.16}
+.sv-board-view .can{fill:#d9d3c2;stroke:#8a8272;stroke-width:1}
+.sv-board-view .can-line{stroke:#8a8272;stroke-width:.9}
+.sv-board-view .hdr{fill:#3e3a34}
+.sv-board-view .tran{fill:#4a453d}
+.sv-board-view .coil{fill:none;stroke:#b99a5e;stroke-width:2;stroke-linecap:round}
+.sv-board-view .port{fill:#c9c2b2;stroke:#8a8272;stroke-width:1}
+.sv-board-view .port-in{fill:#6e675c}
+.sv-board-view .silk{font-family:var(--sv-code);font-size:11px;letter-spacing:.08em;fill:#b4ac98}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .front{opacity:0;transition:opacity .3s ease;pointer-events:none}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .side{opacity:1;transition:opacity .3s ease}
+.sv-board-walk.is-met .robot .front{opacity:1}
+.sv-board-walk.is-met .robot .side{opacity:0}
+.sv-board-walk.is-met .robot *{animation-play-state:paused}
+.sv-board-walk.is-met .robot .front :is(.core,.ant-led,.wave){animation-play-state:running}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .eye{fill:var(--sv-amber)}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .front .wave{transform-box:view-box;transform-origin:13px -29px}
+.sv-board-walk.is-met .robot .wave{animation:sv-wave .9s ease-in-out infinite}
+.sv-board-hi{position:absolute;bottom:58%;transform:none;font-family:var(--sv-mono);font-size:14px;letter-spacing:.04em;color:var(--sv-ink);background:var(--sv-paper);border:1px solid var(--sv-ink);border-radius:999px 999px 999px 4px;padding:6px 13px;pointer-events:none;box-shadow:0 8px 18px -12px #16140e8c;animation:sv-board-hi .5s var(--sv-ease) both}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .shadow{fill:var(--sv-ink);opacity:.13}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .body{fill:#c6cbd3;stroke:#6e675c;stroke-width:1.1}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .head{fill:#d6dae0;stroke:#6e675c;stroke-width:1.1}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .neck{fill:#9aa0a8}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .visor{fill:#2c2a26}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .vent{fill:#9aa0a8}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .core{fill:var(--sv-amber);stroke:#6e675c;stroke-width:.9;animation:sv-core 1.6s ease-in-out infinite}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .ant{stroke:#6e675c;stroke-width:1.4;fill:none}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .ant-led{fill:var(--sv-amber);stroke:#6e675c;stroke-width:.8;animation:sv-core 1.6s ease-in-out infinite .3s}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .limb{fill:#b4bac3;stroke:#6e675c;stroke-width:1}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot .joint{fill:#8b929b;stroke:#6e675c;stroke-width:.9}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot :is(.foot,.grip){fill:#4a453d}
+:is(.sv-board-view,.sv-rig,.sv-404-view) .robot :is(.thigh,.knee,.shoulder,.elbow){transform-box:view-box;transform-origin:0 0}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .leg-a .thigh{animation:sv-step-hip .5s ease-in-out infinite}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .leg-b .thigh{animation:sv-step-hip .5s ease-in-out infinite -.25s}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .leg-a .knee{animation:sv-step-knee .5s ease-in-out infinite}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .leg-b .knee{animation:sv-step-knee .5s ease-in-out infinite -.25s}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .arm-a .shoulder{animation:sv-step-arm .5s ease-in-out infinite -.25s}
+:is(.sv-board-walk,.sv-rig .rg-bot) .robot .arm-b .shoulder{animation:sv-step-arm .5s ease-in-out infinite}
+.sv-board-view .chip{opacity:.6;transition:opacity .5s var(--sv-ease)}
+.sv-board-view .chip.is-on{opacity:1}
+.sv-board-view .chip.is-on .die{fill:var(--sv-amber)}
+.sv-board-view .chip.is-on .chip-label{fill:var(--sv-ink)}
+.sv-street{margin-top:clamp(44px,6.5vh,78px);margin-bottom:0}
+.sv-street-read{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;min-height:30px}
+.sv-street-read .ix{font-family:var(--sv-mono);font-size:var(--sv-fs-micro);letter-spacing:.16em;color:var(--sv-amber-2)}
+.sv-street-read .ahead{margin-left:auto;font-family:var(--sv-mono);font-size:var(--sv-fs-micro);letter-spacing:.16em;text-transform:uppercase;color:var(--sv-ink-3)}
+.sv-street-read .say{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;animation:sv-street-say .5s var(--sv-ease) both}
+.sv-street-read .name{font-size:clamp(19px,1.55vw,24px);font-weight:500;letter-spacing:-.02em;color:var(--sv-ink)}
+.sv-street-read .role{font-size:var(--sv-fs-sm);color:var(--sv-ink-3)}
+.sv-street-view{position:relative;overflow:visible;width:100%}
+.sv-street-view svg{display:block;width:100%;height:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.sv-street-view :is(path,rect,circle,ellipse){vector-effect:non-scaling-stroke}
+.sv-street-view .far,.sv-street-view .mid,.sv-street-view .near{will-change:transform}
+.sv-street-view .ln{fill:none;stroke:#8a8272;stroke-width:1;stroke-linejoin:round;stroke-linecap:round}
+.sv-street-view .sv-ahead .drop{stroke:var(--sv-amber-2);stroke-width:1;opacity:.45;stroke-dasharray:4 5}
+.sv-street-view .sv-ahead .pin{fill:var(--sv-amber);stroke:var(--sv-amber-2);stroke-width:1}
+.sv-street-view .sv-ahead .pin-eye{fill:var(--sv-sheet);stroke:none}
+.sv-street-view .far rect{fill:#aebfc9;opacity:.26}
+.sv-street-view .far rect.far2{opacity:.15}
+.sv-street-view .smoke circle{fill:#dcd5c6;opacity:.7}
+.sv-street-view .balloon .env{fill:#e9afa0}
+.sv-street-view .balloon .env-band{fill:#f2e3b6}
+.sv-street-view .balloon .basket{fill:#c9a97e;stroke:#8a8272;stroke-width:.7}
+.sv-street-view .shade{fill:url(#sv-fc);pointer-events:none}
+.sv-street-view .side{fill:#000;opacity:.06}
+.sv-street-view .cast{fill:#8a8272;opacity:.13}
+.sv-street-view .sun{fill:url(#sv-sun)}
+.sv-street-view .sun-halo{fill:url(#sv-sky);opacity:.5}
+.sv-street-view .face{stroke:#8a8272;stroke-width:.8}
+.sv-street-view .fc0{fill:#f2e3b6}
+.sv-street-view .rf0{fill:#e3ce9c}
+.sv-street-view .fc1{fill:#e9cfc5}
+.sv-street-view .rf1{fill:#ddbcae}
+.sv-street-view .fc2{fill:#cbd5be}
+.sv-street-view .rf2{fill:#b7c6a6}
+.sv-street-view .fc3{fill:#c9d6dc}
+.sv-street-view .rf3{fill:#b3c5ce}
+.sv-street-view .fc4{fill:#efe9d2}
+.sv-street-view .rf4{fill:#e0d8ba}
+.sv-street-view .roof{stroke:#8a8272;stroke-width:.7}
+.sv-street-view .win{fill:#fdfaf0;stroke:#8a8272;stroke-width:.55}
+.sv-street-view .door{fill:#d9a886;stroke:#8a8272;stroke-width:.7}
+.sv-street-view .awn{stroke:none}
+.sv-street-view .aw0{fill:#e9afa0}
+.sv-street-view .aw1{fill:#a8c2a0}
+.sv-street-view .aw2{fill:#efd08e}
+.sv-street-view .trunk{fill:none;stroke:#a08a6f;stroke-width:1.3;stroke-linecap:round}
+.sv-street-view .leaf{stroke:#8a8272;stroke-width:.7}
+.sv-street-view .g0{fill:#afc79d}
+.sv-street-view .g1{fill:#c4d3ae}
+.sv-street-view .bulb{fill:#f2d98f;stroke:#8a8272;stroke-width:.8}
+.sv-street-view .box{fill:#efe9d2;stroke:#8a8272;stroke-width:.8}
+.sv-street-view .pot{fill:#e0d2b4;stroke:#8a8272;stroke-width:.8}
+.sv-street-view .bin{fill:#d6cdb8}
+.sv-street-view .fl{stroke:none}
+.sv-street-view .f0{fill:#e5a28f}
+.sv-street-view .f1{fill:#efcf8a}
+.sv-street-view .f2{fill:#b9a8d6}
+.sv-street-view .cat path,.sv-street-view .cat circle{fill:#8a7b66}
+.sv-street-view .cat .tail{fill:none;stroke:#8a7b66;stroke-width:1.6;stroke-linecap:round}
+.sv-street-view .home{opacity:.85}
+.sv-street-view .tl-box{fill:#6e675c}
+.sv-street-view .tl-r{fill:#e39a8e}
+.sv-street-view .tl-a{fill:#efd08e}
+.sv-street-view .tl-g{fill:#a8c2a0}
+.sv-street-view .car-body{stroke:#8a8272;stroke-width:.7}
+.sv-street-view .cb0{fill:#c9d6dc}
+.sv-street-view .cb1{fill:#e9cfc5}
+.sv-street-view .cb2{fill:#f2e3b6}
+.sv-street-view .car-win{fill:#fdfaf0;stroke:#8a8272;stroke-width:.5}
+.sv-street-view .car-wheel{fill:#57534a}
+.sv-street-view .car-hub{fill:#c9c2b2}
+.sv-street-view .hyd{fill:#e5a28f;stroke:#8a8272;stroke-width:.7}
+.sv-street-view .road{stroke:#8a8272;stroke-width:1.2}
+.sv-street-view .kerb{stroke:#cdc6b4;stroke-width:1}
+.sv-street-view .dash{stroke:#dcd5c4;stroke-width:2;stroke-linecap:round}
+.sv-street-view .bl{opacity:.55;transition:opacity .6s var(--sv-ease)}
+.sv-street-view .bl.is-on{opacity:1}
+.sv-street-view{cursor:pointer}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shadow{fill:var(--sv-ink);opacity:.12}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat{fill:#7a835f}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-n{fill:#8c956e}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-f{fill:#5f674a}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-d{fill:#555d42}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .trews{fill:#a9b7c6}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .leg.far .trews{fill:#93a2b2}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .bag{fill:#8e6274}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .bag-d{fill:#6c4b5b}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shirt{fill:#f2ecd9}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shoe{fill:#333d52}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shoe-d{fill:#242c3c}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .sneak{fill:#efe8d4}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .cup{fill:var(--sv-amber-2)}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .cup-lid{fill:var(--sv-amber)}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .cup-rim{fill:var(--sv-amber-lt)}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker :is(.skin,.hand,.ear){fill:#e8be9b}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker :is(.skin-2,.hand-2,.ear-2,.hand-f){fill:#d8a87f}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hand-f2{fill:#c89870}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hair{fill:#6e3f22}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hair-d{fill:#4e2b14}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .brow{fill:#5c331b}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .pupil{fill:#2c2620}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .lid{fill:#d8a87f}
+:is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .smile{fill:#fbf7ee}
+.sv-desk-view :is(.walker,.daughter) :is(path,circle,ellipse,rect){stroke:none}
+:is(.sv-desk-view,.sv-door-view) .walker .knuck{fill:none;stroke:#d8a87f;stroke-width:.7;stroke-linecap:round}
+:is(.sv-desk-view,.sv-door-view) .walker .finger{fill:none;stroke:#e8be9b;stroke-width:2;stroke-linecap:round}
+.sv-desk-view :is(.walker,.daughter).is-playing .arm-throw{transform-box:fill-box;animation:sv-rps 3.6s cubic-bezier(.4,0,.3,1) infinite}
+.sv-desk-view .walker.is-playing .arm-throw{transform-origin:6% 8%}
+.sv-street-view .walker :is(.thigh,.knee,.foot,.shoulder,.elbow,.lift){transform-box:view-box;transform-origin:0 0}
+.sv-street{--wk: .84s}
+.sv-street .walker .bob{animation:sv-walk-bob var(--wk) ease-in-out infinite}
+.sv-street .walker .rise{animation:sv-walk-rise var(--wk) ease-in-out infinite}
+.sv-street .walker .leg-a .thigh{animation:sv-walk-thigh var(--wk) linear infinite}
+.sv-street .walker .leg-a .knee{animation:sv-walk-knee var(--wk) linear infinite}
+.sv-street .walker .leg-a .foot{animation:sv-walk-foot var(--wk) linear infinite}
+.sv-street .walker .leg-b .thigh{animation:sv-walk-thigh var(--wk) linear infinite calc(var(--wk) / -2)}
+.sv-street .walker .leg-b .knee{animation:sv-walk-knee var(--wk) linear infinite calc(var(--wk) / -2)}
+.sv-street .walker .leg-b .foot{animation:sv-walk-foot var(--wk) linear infinite calc(var(--wk) / -2)}
+.sv-street .walker .arm .shoulder{animation:sv-walk-shoulder var(--wk) ease-in-out infinite calc(var(--wk) * -.64)}
+.sv-street .walker .lift{animation:sv-walk-carry var(--wk) ease-in-out infinite}
+.sv-street--line .sv-street-view :is(.bl,.prop,.home,.car,.balloon,.cloud,.far) :is(.face,.roof,.win,.door,.box,.pot,.leaf,.bin,.car-body,.car-win,.tl-box,.basket,.env,.env-band,.hyd,.bulb,ellipse){fill:var(--sv-line-2);stroke:#6f6858;stroke-width:1.1}
+.sv-street--line .sv-street-view :is(.shade,.side,.cast,.sun-halo){display:none}
+.sv-street--line .sv-street-view .ln{stroke:#6f6858}
+.sv-street--line .sv-street-view .far rect{fill:none;stroke:#6f6858;stroke-width:.9;opacity:.3}
+.sv-street--line .sv-street-view .sun{fill:none;stroke:var(--sv-amber-2);stroke-width:1.4}
+.sv-street--line .sv-street-view :is(.trunk,.road){stroke:#6f6858}
+.sv-street--line .sv-street-view .cat path,.sv-street--line .sv-street-view .cat circle{fill:#6f6858}
+.sv-street--line .sv-street-view :is(.awn,.bulb,.tl-a,.fl){fill:var(--sv-amber);stroke:#6f6858}
+.sv-street--line .sv-street-view .tl-r,.sv-street--line .sv-street-view .tl-g{fill:var(--sv-sheet)}
+.sv-street--line .sv-street-view .bl.is-on :is(.face,.roof){fill:#fcefd2}
+.sv-street--line .sv-street-view .bl.is-on .door{fill:var(--sv-amber)}
+.sv-street--line .sv-street-view .walker .shadow{opacity:.1}
+.sv-street.is-hi .walker .jump{animation:sv-jump .62s cubic-bezier(.32,1.2,.4,1)}
+.sv-street-hi{position:absolute;top:-8px;transform:translate(-22%);font-family:var(--sv-mono);font-size:13px;letter-spacing:.04em;color:var(--sv-ink);background:var(--sv-paper);border:1px solid var(--sv-ink);border-radius:999px 999px 999px 4px;padding:5px 11px;pointer-events:none;box-shadow:0 8px 16px -12px #16140e8c;animation:sv-hi 1.25s var(--sv-ease) both}
+.sv-board{display:grid;grid-template-columns:repeat(5,1fr);border-block:1px solid var(--sv-line);margin-inline:calc(-1 * var(--sv-inset))}
+.sv-desk-view :is(.back,.side,.desk,.mac,.sitter,.fore) :is(path,rect,circle,ellipse):not(.ln):not(.sv-fig *):not(.walker *):not(.daughter *){stroke:#8a8272;stroke-width:1;stroke-linejoin:round}
+.sv-door-view .walker .arm-throw{transform-box:view-box;transform-origin:-.1px -55.2px;animation:sv-knock 4.2s ease-in-out infinite}
+.sv-door-view .walker .rap .ring{stroke-width:1.1}
+.sv-rig .rg-bot .robot{transform-box:fill-box;transform-origin:50% 100%;transition:transform .34s cubic-bezier(.3,1.5,.5,1)}
+.sv-rig .rg-bot.is-down .robot{transform:rotate(78deg) translateY(2px);transition:transform .3s cubic-bezier(.5,0,.9,.5)}
+.sv-street-view .lamp .cone{fill:url(#sv-lamp-cone);stroke:none}
+.sv-street-view .lamp .pool,.sv-street-view .lamp .halo{fill:url(#sv-lamp-glow);stroke:none}
+.sv-street-view .lamp .lit{opacity:.42;transition:opacity .5s var(--sv-ease)}
+.site-root.is-dark .sv-street-view .lamp .lit{opacity:1;animation:sv-lamp-breathe 6.5s ease-in-out infinite}
+.site-root.is-dark .sv-street-view .prop:nth-child(3n) .lit{animation-delay:-2.2s}
+.site-root.is-dark .sv-street-view .prop:nth-child(3n+1) .lit{animation-delay:-4.4s}
+.site-root.is-dark .sv-street-view .bulb{fill:#ffe3a6;stroke:#c99a3f}
+.sv-rig .rg-bot.is-working .robot :is(.leg-a,.leg-b) :is(.thigh,.knee){animation:none!important}
+.sv-rig .rg-bot.is-working .robot .arm-a .shoulder{animation:sv-rg-hand 1.15s ease-in-out infinite!important}
+.sv-rig .rg-bot.is-working .robot .arm-b .shoulder{animation:sv-rg-hand 1.15s ease-in-out infinite -.42s!important}
+.sv-rig .rg-bot.is-working .robot{animation:sv-rg-work 2.6s ease-in-out infinite}
+.sv-404-view .robot .arm-a .shoulder{animation:sv-404-stamp 1.8s ease-in-out infinite}
+.sv-404.is-met .robot .front{opacity:1}
+.sv-404.is-met .robot .side{opacity:0}
+.sv-404.is-met .robot .front :is(.core,.ant-led,.wave){animation-play-state:running}
+.sv-404.is-met .robot .wave{animation:sv-wave .9s ease-in-out infinite}
+.site-root.is-dark .sv-board-view .trace{stroke:#bfa064}
+.site-root.is-dark .sv-board-view .sig,.site-root.is-dark .sv-board-view .pad{stroke:#514323}
+.site-root.is-dark .sv-board-view .pad-hole{fill:#211e17}
+.site-root.is-dark .sv-board-view .pin{stroke:#676154}
+.site-root.is-dark .sv-board-view .via{stroke:#bfa064}
+.site-root.is-dark .sv-board-view .chip-body{fill:#28251c;stroke:#777062}
+.site-root.is-dark .sv-board-view .die{fill:#353123;stroke:#777062}
+.site-root.is-dark .sv-board-view .chip-dot{fill:#777062}
+.site-root.is-dark .sv-board-view .cap{fill:#292f33;stroke:#777062}
+.site-root.is-dark .sv-board-view .cap-band{stroke:#777062}
+.site-root.is-dark .sv-board-view .res{fill:#362d24;stroke:#777062}
+.site-root.is-dark .sv-board-view .res-band{stroke:#76634c}
+.site-root.is-dark .sv-board-view .can{fill:#312e24;stroke:#777062}
+.site-root.is-dark .sv-board-view .can-line{stroke:#777062}
+.site-root.is-dark .sv-board-view .hdr{fill:#c0bcb5}
+.site-root.is-dark .sv-board-view .tran{fill:#b4afa6}
+.site-root.is-dark .sv-board-view .coil{stroke:#bfa064}
+.site-root.is-dark .sv-board-view .port{fill:#3f3a30;stroke:#777062}
+.site-root.is-dark .sv-board-view .port-in{fill:#918a80}
+.site-root.is-dark .sv-board-view .silk{fill:#524c3c}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .body{fill:#313539;stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .head{fill:#27292d;stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .neck{fill:#53585e}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .visor{fill:#d3d0cb}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .vent{fill:#53585e}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .core{stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .ant{stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .ant-led{stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .limb{fill:#3e4248;stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot .joint{fill:#5e646c;stroke:#918a80}
+.site-root.is-dark :is(.sv-board-view,.sv-rig,.sv-404-view) .robot :is(.foot,.grip){fill:#b4afa6}
+.site-root.is-dark .sv-street-view .ln{stroke:#777062}
+.site-root.is-dark .sv-street-view .far rect{fill:#364249}
+.site-root.is-dark .sv-street-view .smoke circle{fill:#302c23}
+.site-root.is-dark .sv-street-view .balloon .env{fill:#583228}
+.site-root.is-dark .sv-street-view .balloon .env-band{fill:#2a2207}
+.site-root.is-dark .sv-street-view .balloon .basket{fill:#5e4523;stroke:#777062}
+.site-root.is-dark .sv-street-view .side{fill:#f5f5f5}
+.site-root.is-dark .sv-street-view .cast{fill:#777062}
+.site-root.is-dark .sv-street-view .face{stroke:#777062}
+.site-root.is-dark .sv-street-view .fc0{fill:#2a2207}
+.site-root.is-dark .sv-street-view .rf0{fill:#3c2f0c}
+.site-root.is-dark .sv-street-view .fc1{fill:#372923}
+.site-root.is-dark .sv-street-view .rf1{fill:#49342b}
+.site-root.is-dark .sv-street-view .fc2{fill:#2d3225}
+.site-root.is-dark .sv-street-view .rf2{fill:#37412b}
+.site-root.is-dark .sv-street-view .fc3{fill:#282f33}
+.site-root.is-dark .sv-street-view .rf3{fill:#313d43}
+.site-root.is-dark .sv-street-view .fc4{fill:#221f13}
+.site-root.is-dark .sv-street-view .rf4{fill:#2f2b19}
+.site-root.is-dark .sv-street-view .roof{stroke:#777062}
+.site-root.is-dark .sv-street-view .win{fill:#15130f;stroke:#777062}
+.site-root.is-dark .sv-street-view .door{fill:#603d23;stroke:#777062}
+.site-root.is-dark .sv-street-view .aw0{fill:#583228}
+.site-root.is-dark .sv-street-view .aw1{fill:#364830}
+.site-root.is-dark .sv-street-view .trunk{stroke:#76634c}
+.site-root.is-dark .sv-street-view .leaf{stroke:#777062}
+.site-root.is-dark .sv-street-view .g0{fill:#344427}
+.site-root.is-dark .sv-street-view .g1{fill:#2e3720}
+.site-root.is-dark .sv-street-view .box{fill:#221f13;stroke:#777062}
+.site-root.is-dark .sv-street-view .pot{fill:#352d1b;stroke:#777062}
+.site-root.is-dark .sv-street-view .bin{fill:#373225}
+.site-root.is-dark .sv-street-view .f0{fill:#663629}
+.site-root.is-dark .sv-street-view .f2{fill:#4e4163}
+.site-root.is-dark .sv-street-view .cat path,.site-root.is-dark .sv-street-view .cat circle{fill:#827461}
+.site-root.is-dark .sv-street-view .cat .tail{stroke:#827461}
+.site-root.is-dark .sv-street-view .tl-box{fill:#918a80}
+.site-root.is-dark .sv-street-view .tl-r{fill:#6e3830}
+.site-root.is-dark .sv-street-view .tl-g{fill:#364830}
+.site-root.is-dark .sv-street-view .car-body{stroke:#777062}
+.site-root.is-dark .sv-street-view .cb0{fill:#282f33}
+.site-root.is-dark .sv-street-view .cb1{fill:#372923}
+.site-root.is-dark .sv-street-view .cb2{fill:#2a2207}
+.site-root.is-dark .sv-street-view .car-win{fill:#15130f;stroke:#777062}
+.site-root.is-dark .sv-street-view .car-wheel{fill:#a4a097}
+.site-root.is-dark .sv-street-view .car-hub{fill:#3f3a30}
+.site-root.is-dark .sv-street-view .hyd{fill:#663629;stroke:#777062}
+.site-root.is-dark .sv-street-view .road{stroke:#777062}
+.site-root.is-dark .sv-street-view .kerb{stroke:#3c372c}
+.site-root.is-dark .sv-street-view .dash{stroke:#302c22}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat{fill:#727a59}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-n{fill:#626a48}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-f{fill:#8d9578}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .coat-d{fill:#979f84}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .trews{fill:#3c4651}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .leg.far .trews{fill:#4c5865}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .bag{fill:#9e7485}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .bag-d{fill:#b492a2}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shirt{fill:#1f1c13}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shoe{fill:#aebad1}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .shoe-d{fill:#c5cfe2}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .sneak{fill:#221f15}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker :is(.skin,.hand,.ear){fill:#ba987c}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker :is(.skin-2,.hand-2,.ear-2,.hand-f){fill:#ad8666}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hand-f2{fill:#a07a5a}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hair{fill:#58321b}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .hair-d{fill:#3e2210}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .brow{fill:#4a2916}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .pupil{fill:#231e1a}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .lid{fill:#ad8666}
+.site-root.is-dark :is(.sv-street-view,.sv-desk-view,.sv-door-view) .walker .smile{fill:#c9c6be}
+.site-root.is-dark :is(.sv-desk-view,.sv-door-view) .walker .finger{stroke:#4b3018}
+.site-root.is-dark .sv-street--line .sv-street-view .ln{stroke:#918a7b}
+.site-root.is-dark .sv-street--line .sv-street-view .far rect{stroke:#918a7b}
+.site-root.is-dark .sv-street--line .sv-street-view :is(.trunk,.road){stroke:#918a7b}
+.site-root.is-dark .sv-street--line .sv-street-view .cat path,.site-root.is-dark .sv-street--line .sv-street-view .cat circle{fill:#918a7b}
+.site-root.is-dark .sv-street--line .sv-street-view .bl.is-on :is(.face,.roof){fill:#1f190b}
+.site-root.is-dark .sv-desk-view :is(.back,.side,.desk,.mac,.sitter,.fore) :is(path,rect,circle,ellipse):not(.ln):not(.sv-fig *):not(.walker *):not(.daughter *){stroke:#777062}
+@keyframes sv-wave{0%,to{transform:rotate(8deg)}50%{transform:rotate(-24deg)}}
+@keyframes sv-board-hi{0%{opacity:0;transform:translate(-50%) translateY(10px) scale(.8)}to{opacity:1;transform:translate(-50%) translateY(0) scale(1)}}
+@keyframes sv-core{0%,to{opacity:.55}50%{opacity:1}}
+@keyframes sv-step-hip{0%,to{transform:rotate(-24deg)}50%{transform:rotate(20deg)}}
+@keyframes sv-step-knee{0%,60%,to{transform:rotate(2deg)}80%{transform:rotate(34deg)}}
+@keyframes sv-step-arm{0%,to{transform:rotate(14deg)}50%{transform:rotate(-12deg)}}
+@keyframes sv-street-say{0%{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes sv-walk-thigh{0%{transform:rotate(-25.4deg)}3%{transform:rotate(-23.5deg)}8%{transform:rotate(-25.8deg)}16%{transform:rotate(-15.8deg)}24%{transform:rotate(-5.4deg)}32%{transform:rotate(-9.2deg)}40%{transform:rotate(-10deg)}48%{transform:rotate(-8.2deg)}55%{transform:rotate(-4deg)}62%{transform:rotate(-.9deg)}70%{transform:rotate(-15deg)}78%{transform:rotate(-25deg)}86%{transform:rotate(-26.4deg)}93%{transform:rotate(-25.9deg)}to{transform:rotate(-25.4deg)}}
+@keyframes sv-walk-knee{0%{transform:rotate(4.3deg)}3%{transform:rotate(4.3deg)}8%{transform:rotate(20.1deg)}16%{transform:rotate(12.8deg)}24%{transform:rotate(4.3deg)}32%{transform:rotate(25.5deg)}40%{transform:rotate(39.9deg)}48%{transform:rotate(48.7deg)}55%{transform:rotate(48.8deg)}62%{transform:rotate(50.8deg)}70%{transform:rotate(52deg)}78%{transform:rotate(40deg)}86%{transform:rotate(20deg)}93%{transform:rotate(7deg)}to{transform:rotate(4.3deg)}}
+@keyframes sv-walk-foot{0%{transform:rotate(12.1deg)}3%{transform:rotate(15.2deg)}8%{transform:rotate(5.7deg)}16%{transform:rotate(3deg)}24%{transform:rotate(1.1deg)}32%{transform:rotate(-1.3deg)}40%{transform:rotate(-10.9deg)}48%{transform:rotate(-14.5deg)}55%{transform:rotate(-11.8deg)}62%{transform:rotate(-12.9deg)}70%{transform:rotate(-19deg)}78%{transform:rotate(-7deg)}86%{transform:rotate(.4deg)}93%{transform:rotate(9.9deg)}to{transform:rotate(12.1deg)}}
+@keyframes sv-walk-shoulder{0%,to{transform:rotate(-21deg)}50%{transform:rotate(8deg)}}
+@keyframes sv-walk-bob{0%{transform:translateY(2px)}25%{transform:translateY(0)}50%{transform:translateY(2px)}75%{transform:translateY(0)}to{transform:translateY(2px)}}
+@keyframes sv-walk-rise{0%{transform:translateY(-.9px)}25%{transform:translateY(0)}50%{transform:translateY(-.9px)}75%{transform:translateY(0)}to{transform:translateY(-.9px)}}
+@keyframes sv-walk-carry{0%{transform:rotate(-2.4deg)}25%{transform:rotate(1.6deg)}50%{transform:rotate(-2.4deg)}75%{transform:rotate(1.6deg)}to{transform:rotate(-2.4deg)}}
+@keyframes sv-jump{0%,to{transform:translateY(0)}40%{transform:translateY(-19px)}64%{transform:translateY(-14px)}}
+@keyframes sv-hi{0%{opacity:0;transform:translate(-22%) translateY(9px) scale(.7)}14%,76%{opacity:1;transform:translate(-22%) translateY(0) scale(1)}to{opacity:0;transform:translate(-22%) translateY(-9px) scale(1)}}
+@keyframes sv-knock{0%,4%{transform:rotate(0) translate(0)}8%{transform:rotate(-17deg) translate(-4px,-1px)}12%,20%{transform:rotate(2deg) translate(1px)}16%{transform:rotate(-17deg) translate(-4px,-1px)}24%,to{transform:rotate(0) translate(0)}}
+@keyframes sv-lamp-breathe{0%,to{opacity:1}50%{opacity:.84}}
+@keyframes sv-rg-hand{0%,to{transform:rotate(-18deg)}50%{transform:rotate(-38deg)}}
+@keyframes sv-rg-work{0%,to{transform:translateY(0)}50%{transform:translateY(-1.6px)}}
+@keyframes sv-rps{0%{transform:rotate(0)}8%{transform:rotate(-16deg)}16%{transform:rotate(2deg)}24%{transform:rotate(-16deg)}32%{transform:rotate(2deg)}40%{transform:rotate(-18deg)}48%{transform:rotate(4deg)}to{transform:rotate(4deg)}}
+@keyframes sv-404-stamp{0%,46%,to{transform:rotate(-6deg)}58%{transform:rotate(-64deg)}70%{transform:rotate(-10deg)}76%{transform:rotate(-18deg)}}
