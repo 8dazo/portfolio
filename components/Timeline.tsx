@@ -4,7 +4,11 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring } from "motion/react";
 import { timeline } from "@/lib/data";
 
-export default function Timeline() {
+export default function Timeline({
+  badge = "02 · still figuring things out",
+}: {
+  badge?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -16,7 +20,7 @@ export default function Timeline() {
     <section
       id="story"
       className="sec-frame band-dots px-5 py-32 sm:px-10 sm:py-44"
-      data-badge="02 · still figuring things out"
+      data-badge={badge}
     >
       <div className="mx-auto w-full max-w-4xl">
       <h2 className="mb-20 max-w-3xl font-sans text-4xl font-bold uppercase leading-[0.95] sm:text-6xl">

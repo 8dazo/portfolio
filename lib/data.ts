@@ -8,13 +8,6 @@ export const info = {
   roles: ["AI Engineer", "Full-Stack Dev", "Agent Builder", "CP Guardian"],
 };
 
-export const stats = [
-  { value: 10000, suffix: "+", label: "requests/day my APIs handle without crying" },
-  { value: 20, suffix: "+", label: "LoRA models wired into one image platform" },
-  { value: 2380, suffix: "", label: "peak LeetCode rating. top 0.3% worldwide" },
-  { value: 40, suffix: "%", label: "manual work erased by agent workflows I shipped" },
-];
-
 export const timeline = [
   {
     year: "2023",

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
-import BenchScene from "@/components/scene/BenchScene";
+import AboutSection from "@/components/AboutSection";
 import Timeline from "@/components/Timeline";
 import Manifesto from "@/components/Manifesto";
 
 export const metadata: Metadata = {
   title: "Story — Devansh Mahant",
   description:
-    "From intern to senior engineer, with competitive programming and midnight side projects along the way.",
+    "How Devansh approaches agent infrastructure, full-stack products, model systems, and systems engineering.",
 };
 
 const achievements = [
@@ -34,27 +34,13 @@ const achievements = [
 export default function StoryPage() {
   return (
     <PageShell>
-      <header className="px-5 pb-10 pt-20 sm:px-10 sm:pt-28">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-muted">
-          the story
-        </p>
-        <h1 className="mt-4 font-sans text-6xl font-bold uppercase leading-[0.9] tracking-tight sm:text-8xl">
-          Still figuring
-          <br />
-          <span className="font-serif normal-case italic text-accent">
-            things out
-          </span>
-        </h1>
-        <div className="mt-10">
-          <BenchScene />
-        </div>
-      </header>
+      <AboutSection headingLevel="h1" />
 
       <Timeline />
 
       <section
         className="sec-frame band-plain px-5 py-24 sm:px-10"
-        data-badge="receipts"
+        data-badge="03 · receipts"
       >
         <h2 className="font-sans text-4xl font-bold uppercase tracking-tight sm:text-5xl">
           Proof I wasn&apos;t{" "}
@@ -77,7 +63,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      <Manifesto />
+      <Manifesto badge="04 · code with a purpose" />
     </PageShell>
   );
 }

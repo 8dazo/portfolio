@@ -77,7 +77,11 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({
+  badge = "03 · insomniac work",
+}: {
+  badge?: string;
+}) {
   const headRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: headRef,
@@ -89,7 +93,7 @@ export default function Projects() {
     <section
       id="work"
       className="sec-frame band-paper py-32 sm:py-44"
-      data-badge="03 · insomniac work"
+      data-badge={badge}
     >
       <div ref={headRef} className="overflow-hidden pt-6">
         <motion.h2

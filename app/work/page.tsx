@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/PageShell";
 import StreetTrack from "@/components/scene/StreetTrack";
-import Stats from "@/components/Stats";
+import AITools from "@/components/AITools";
 import { projects } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -75,7 +75,7 @@ export default function WorkPage() {
         ))}
       </div>
 
-      <Stats />
+      <AITools />
 
       <div className="py-10">
         <StreetTrack />

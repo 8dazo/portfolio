@@ -23,7 +23,11 @@ function Word({
   );
 }
 
-export default function Manifesto() {
+export default function Manifesto({
+  badge = "01 · code with a purpose",
+}: {
+  badge?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -35,7 +39,7 @@ export default function Manifesto() {
   return (
     <section
       className="sec-frame band-plain px-5 py-32 sm:px-10 sm:py-44"
-      data-badge="01 · code with a purpose"
+      data-badge={badge}
     >
       <div ref={ref} className="mx-auto w-full max-w-4xl">
         <p className="font-sans text-3xl font-medium leading-snug sm:text-5xl sm:leading-tight">

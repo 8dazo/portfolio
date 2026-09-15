@@ -40,11 +40,15 @@ function MagneticButton() {
   );
 }
 
-export default function Contact() {
+export default function Contact({
+  badge = "04 · make a move",
+}: {
+  badge?: string;
+}) {
   return (
     <section
       id="contact"
-      data-badge="04 · make a move"
+      data-badge={badge}
       className="sec-frame band-plain relative flex flex-col items-center justify-center overflow-hidden px-5 py-32 text-center sm:px-10 sm:py-44"
     >
       <div

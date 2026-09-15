@@ -59,6 +59,11 @@ body {
     cursor: none;
   }
 }
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
 
 /* Outlined display text */
 .text-stroke {
@@ -174,58 +179,214 @@ body {
   background: #fff7e2;
 }
 
-/* Street walker stop state: pause the walk, turn to face the viewer, wave */
-.sv-street .walker .bob,
-.sv-street .walker .pose-front {
-  transition: opacity 0.22s ease;
-}
-.sv-street .walker .pose-front {
-  opacity: 0;
-  pointer-events: none;
-}
-.sv-street.is-stop .walker * {
-  animation-play-state: paused;
-}
-.sv-street.is-stop .walker .jump {
-  animation-play-state: running;
-}
-.sv-street.is-stop .walker .bob {
-  opacity: 0;
-}
-.sv-street.is-stop .walker .pose-front {
-  opacity: 1;
-}
-.sv-street.is-stop .walker .pose-front .arm-wave {
-  transform-box: fill-box;
-  transform-origin: 40% 92%;
-  animation: sv-wave 0.8s ease-in-out infinite;
-  animation-play-state: running;
+/* AI tools: staggered brand wall replacing the numeric stats panel */
+.ai-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--foreground);
+  border-left: 1px solid var(--foreground);
+  background: var(--foreground);
+  gap: 1px;
 }
 
-/* Speech bubble above the walker */
+.ai-tool-card {
+  position: relative;
+  display: flex;
+  min-height: 182px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-right: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  background: var(--background);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ai-tool-card:hover {
+  background: var(--paper);
+}
+
+.ai-tool-mark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ai-tool-card:hover .ai-tool-mark {
+  transform: translateY(-4px) scale(1.06);
+}
+
+.ai-tool-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ai-tool-name {
+  margin-top: 18px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ai-tool-index {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .ai-tools-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .ai-tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ai-tool-card {
+    min-height: 150px;
+  }
+
+  .ai-tool-mark {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* The supplied three-pose sheet replaces the SVG walker during a greeting. */
+.sv-street .walker {
+  transition: opacity 0.2s ease;
+}
+.sv-street .walker .front {
+  display: none;
+}
+.sv-street.is-stop .walker * {
+  animation-play-state: paused !important;
+}
+.sv-street.is-stop .walker {
+  opacity: 0;
+}
+
+.sv-human-wave-sprite {
+  position: absolute;
+  z-index: 4;
+  left: 12.93%;
+  bottom: 9.8%;
+  height: 90%;
+  aspect-ratio: 0.46;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.94);
+  transform-origin: 50% 100%;
+  transition: opacity 0.2s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sv-street.is-stop .sv-human-wave-sprite {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.sv-human-wave-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.sv-human-wave-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  user-select: none;
+}
+
+.sv-human-wave-frame--1 img {
+  transform: translateX(-13.5%);
+}
+
+.sv-human-wave-frame--2 img {
+  transform: translateX(-39.5%);
+}
+
+.sv-human-wave-frame--3 img {
+  transform: translateX(-67.1%);
+}
+
+.sv-street.is-stop .sv-human-wave-frame--1 {
+  animation: sv-human-wave-frame-1 1.05s step-end infinite;
+}
+
+.sv-street.is-stop .sv-human-wave-frame--2 {
+  animation: sv-human-wave-frame-2 1.05s step-end infinite;
+}
+
+.sv-street.is-stop .sv-human-wave-frame--3 {
+  animation: sv-human-wave-frame-3 1.05s step-end infinite;
+}
+
+@keyframes sv-human-wave-frame-1 {
+  0%, 19.99%, 80%, 100% { opacity: 1; }
+  20%, 79.99% { opacity: 0; }
+}
+
+@keyframes sv-human-wave-frame-2 {
+  0%, 19.99%, 40%, 59.99%, 80%, 100% { opacity: 0; }
+  20%, 39.99%, 60%, 79.99% { opacity: 1; }
+}
+
+@keyframes sv-human-wave-frame-3 {
+  0%, 39.99%, 60%, 100% { opacity: 0; }
+  40%, 59.99% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sv-street.is-stop .sv-human-wave-frame {
+    animation: none;
+  }
+
+  .sv-street.is-stop .sv-human-wave-frame--2 {
+    opacity: 1;
+  }
+}
+
+/* Match the clean speech label used by the robot scene. */
 .hi-bubble {
   position: absolute;
   z-index: 5;
-  background: var(--amber);
-  color: var(--foreground);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 6px 10px;
-  border: 1px solid var(--foreground);
+  left: calc(12.93% + clamp(19px, 1.8vw, 28px));
+  bottom: 68%;
   pointer-events: none;
+  transform-origin: left bottom;
 }
-.hi-bubble::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 12px;
-  width: 8px;
-  height: 8px;
-  background: inherit;
-  border-right: 1px solid var(--foreground);
-  border-bottom: 1px solid var(--foreground);
-  transform: rotate(45deg);
+
+.hi-bubble-cloud {
+  display: block;
+  background: var(--sv-paper, var(--paper));
+  color: var(--sv-ink, var(--foreground));
+  font-family: var(--sv-mono, var(--font-geist-mono)), ui-monospace, monospace;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 6px 13px;
+  border: 1px solid var(--sv-ink, var(--foreground));
+  border-radius: 999px 999px 999px 4px;
+  box-shadow: 0 8px 18px -12px rgba(22, 20, 14, 0.55);
 }
 
 /* Hatched divider, like pencil hatch marks on a blueprint */

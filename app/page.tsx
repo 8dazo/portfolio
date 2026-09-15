@@ -4,10 +4,11 @@ import CustomCursor from "@/components/CustomCursor";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
+import AboutSection from "@/components/AboutSection";
 import Manifesto from "@/components/Manifesto";
 import Tracks from "@/components/Tracks";
 import AiStack from "@/components/AiStack";
-import Stats from "@/components/Stats";
+import AITools from "@/components/AITools";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
@@ -30,18 +31,19 @@ export default function Home() {
           items={skills}
           className="band-plain font-mono text-sm uppercase tracking-widest text-muted"
         />
-        <Manifesto />
+        <AboutSection />
+        <Manifesto badge="02 · code with a purpose" />
         <Tracks />
-        <Stats />
-        <Timeline />
+        <AITools />
+        <Timeline badge="03 · still figuring things out" />
         <Marquee
           items={["ship it", "break it", "fix it", "ship it again"]}
           reverse
           className="band-plain font-sans text-2xl font-bold uppercase"
         />
-        <Projects />
+        <Projects badge="04 · insomniac work" />
         <AiStack />
-        <Contact />
+        <Contact badge="05 · make a move" />
         <BoardTrack />
       </main>
       <Footer />
