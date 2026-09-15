@@ -8,7 +8,6 @@ import { info } from "@/lib/data";
 const links = [
   { label: "work", href: "/work" },
   { label: "story", href: "/story" },
-  { label: "fun", href: "/fun" },
 ];
 
 export default function Nav({ instant = false }: { instant?: boolean }) {

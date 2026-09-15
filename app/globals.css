@@ -183,10 +183,7 @@ body {
 .ai-tools-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-top: 1px solid var(--foreground);
-  border-left: 1px solid var(--foreground);
-  background: var(--foreground);
-  gap: 1px;
+  gap: clamp(10px, 1.2vw, 16px);
 }
 
 .ai-tool-card {
@@ -197,14 +194,19 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-right: 1px solid var(--foreground);
-  border-bottom: 1px solid var(--foreground);
+  border: 1px solid var(--foreground);
   background: var(--background);
-  transition: background 0.3s ease, color 0.3s ease;
+  box-shadow: 0 7px 0 -6px color-mix(in srgb, var(--foreground) 32%, transparent);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .ai-tool-card:hover {
   background: var(--paper);
+  border-color: var(--amber);
+  box-shadow: 0 14px 28px -20px color-mix(in srgb, var(--foreground) 70%, transparent);
 }
 
 .ai-tool-mark {
@@ -212,17 +214,19 @@ body {
   width: 58px;
   height: 58px;
   place-items: center;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 14px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .ai-tool-card:hover .ai-tool-mark {
-  transform: translateY(-4px) scale(1.06);
+  transform: translateY(-3px) scale(1.08) rotate(-2deg);
 }
 
-.ai-tool-mark svg {
+.ai-tool-logo {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .ai-tool-name {

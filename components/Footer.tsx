@@ -7,7 +7,6 @@ const columns = [
       { label: "Welcome", href: "/" },
       { label: "Work", href: "/work" },
       { label: "Story", href: "/story" },
-      { label: "Fun", href: "/fun" },
       { label: "Contact", href: "/#contact" },
     ],
   },
